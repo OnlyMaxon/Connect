@@ -6,7 +6,6 @@ import android.nfc.NdefMessage
 import android.nfc.NdefRecord
 import android.nfc.NfcAdapter
 import android.nfc.NfcEvent
-import android.os.Parcelable
 import com.connect.app.data.Contact
 import com.google.gson.Gson
 import java.nio.charset.Charset
