@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.7.0" type="incidents">
+
+    <incident
+        id="OldTargetApi"
+        severity="warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.">
+        <fix-replace
+            description="Update targetSdkVersion to 36"
+            oldString="34"
+            replacement="36"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="13"
+            column="9"
+            startOffset="224"
+            endLine="13"
+            endColumn="23"
+            endOffset="238"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.17.0">
+        <fix-replace
+            description="Change to 1.17.0"
+            family="Update versions"
+            oldString="1.12.0"
+            replacement="1.17.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="42"
+            column="20"
+            startOffset="892"
+            endLine="42"
+            endColumn="51"
+            endOffset="923"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1">
+        <fix-replace
+            description="Change to 1.7.1"
+            family="Update versions"
+            oldString="1.6.1"
+            replacement="1.7.1"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="43"
+            column="20"
+            startOffset="944"
+            endLine="43"
+            endColumn="56"
+            endOffset="980"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.material:material than 1.10.0 is available: 1.13.0">
+        <fix-replace
+            description="Change to 1.13.0"
+            family="Update versions"
+            oldString="1.10.0"
+            replacement="1.13.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="44"
+            column="20"
+            startOffset="1001"
+            endLine="44"
+            endColumn="65"
+            endOffset="1046"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1">
+        <fix-replace
+            description="Change to 2.2.1"
+            family="Update versions"
+            oldString="2.1.4"
+            replacement="2.2.1"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="45"
+            column="20"
+            startOffset="1067"
+            endLine="45"
+            endColumn="70"
+            endOffset="1117"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.coordinatorlayout:coordinatorlayout than 1.2.0 is available: 1.3.0">
+        <fix-replace
+            description="Change to 1.3.0"
+            family="Update versions"
+            oldString="1.2.0"
+            replacement="1.3.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="46"
+            column="20"
+            startOffset="1138"
+            endLine="46"
+            endColumn="72"
+            endOffset="1190"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.room:room-runtime than 2.6.0 is available: 2.8.3">
+        <fix-replace
+            description="Change to 2.8.3"
+            family="Update versions"
+            oldString="2.6.0"
+            replacement="2.8.3"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="49"
+            column="20"
+            startOffset="1247"
+            endLine="49"
+            endColumn="54"
+            endOffset="1281"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.room:room-ktx than 2.6.0 is available: 2.8.3">
+        <fix-replace
+            description="Change to 2.8.3"
+            family="Update versions"
+            oldString="2.6.0"
+            replacement="2.8.3"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="50"
+            column="20"
+            startOffset="1302"
+            endLine="50"
+            endColumn="50"
+            endOffset="1332"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.2 is available: 2.9.4">
+        <fix-replace
+            description="Change to 2.9.4"
+            family="Update versions"
+            oldString="2.6.2"
+            replacement="2.9.4"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="53"
+            column="20"
+            startOffset="1386"
+            endLine="53"
+            endColumn="70"
+            endOffset="1436"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.2 is available: 2.9.4">
+        <fix-replace
+            description="Change to 2.9.4"
+            family="Update versions"
+            oldString="2.6.2"
+            replacement="2.9.4"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="54"
+            column="20"
+            startOffset="1457"
+            endLine="54"
+            endColumn="69"
+            endOffset="1506"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.recyclerview:recyclerview than 1.3.2 is available: 1.4.0">
+        <fix-replace
+            description="Change to 1.4.0"
+            family="Update versions"
+            oldString="1.3.2"
+            replacement="1.4.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="57"
+            column="20"
+            startOffset="1552"
+            endLine="57"
+            endColumn="62"
+            endOffset="1594"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0">
+        <fix-replace
+            description="Change to 1.3.0"
+            family="Update versions"
+            oldString="1.1.5"
+            replacement="1.3.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="66"
+            column="31"
+            startOffset="1847"
+            endLine="66"
+            endColumn="62"
+            endOffset="1878"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0">
+        <fix-replace
+            description="Change to 3.7.0"
+            family="Update versions"
+            oldString="3.5.1"
+            replacement="3.7.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="67"
+            column="31"
+            startOffset="1910"
+            endLine="67"
+            endColumn="75"
+            endOffset="1954"/>
+    </incident>
+
+    <incident
+        id="NotifyDataSetChanged"
+        severity="warning"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/ContactsAdapter.kt"
+            line="45"
+            column="9"
+            startOffset="1562"
+            endLine="45"
+            endColumn="31"
+            endOffset="1584"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Connect`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="6"
+            column="5"
+            startOffset="251"
+            endLine="6"
+            endColumn="43"
+            endOffset="289"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Connect`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="6"
+            column="5"
+            startOffset="292"
+            endLine="6"
+            endColumn="43"
+            endOffset="330"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Connect`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_profile.xml"
+            line="6"
+            column="5"
+            startOffset="251"
+            endLine="6"
+            endColumn="43"
+            endOffset="289"/>
+    </incident>
+
+    <incident
+        id="UnnecessaryRequiredFeature"
+        severity="warning"
+        message="Consider whether this feature (`android.hardware.nfc`) really is required for the app to function; you can set `android:required=&quot;false&quot;` to indicate that the feature is used but not required">
+        <fix-attribute
+            description="Set required=&quot;false&quot;"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="required"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="7"
+            column="23"
+            startOffset="263"
+            endLine="7"
+            endColumn="43"
+            endOffset="283"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/ContactDetailActivity.kt"
+            line="109"
+            column="30"
+            startOffset="4038"
+            endLine="109"
+            endColumn="59"
+            endOffset="4067"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/ContactDetailActivity.kt"
+            line="109"
+            column="41"
+            startOffset="4049"
+            endLine="109"
+            endColumn="48"
+            endOffset="4056"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/MainActivity.kt"
+            line="111"
+            column="41"
+            startOffset="3775"
+            endLine="111"
+            endColumn="73"
+            endOffset="3807"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/MainActivity.kt"
+            line="117"
+            column="41"
+            startOffset="4192"
+            endLine="117"
+            endColumn="75"
+            endOffset="4226"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/MainActivity.kt"
+            line="131"
+            column="45"
+            startOffset="4999"
+            endLine="131"
+            endColumn="81"
+            endOffset="5035"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/MainActivity.kt"
+            line="133"
+            column="43"
+            startOffset="5104"
+            endLine="133"
+            endColumn="59"
+            endOffset="5120"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/MainActivity.kt"
+            line="136"
+            column="45"
+            startOffset="5353"
+            endLine="136"
+            endColumn="84"
+            endOffset="5392"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Number formatting does not take into account locale settings. Consider using `String.format` instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/connect/app/ui/ProfileActivity.kt"
+            line="74"
+            column="37"
+            startOffset="2824"
+            endLine="74"
+            endColumn="59"
+            endOffset="2846"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;John Doe&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="41"
+            column="21"
+            startOffset="1625"
+            endLine="41"
+            endColumn="44"
+            endOffset="1648"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Age: 25&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="51"
+            column="21"
+            startOffset="2067"
+            endLine="51"
+            endColumn="43"
+            endOffset="2089"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Gmail: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="92"
+            column="25"
+            startOffset="3753"
+            endLine="92"
+            endColumn="47"
+            endOffset="3775"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;john@gmail.com&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="101"
+            column="25"
+            startOffset="4174"
+            endLine="101"
+            endColumn="54"
+            endOffset="4203"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Phone: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="117"
+            column="25"
+            startOffset="4872"
+            endLine="117"
+            endColumn="47"
+            endOffset="4894"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;+1234567890&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="126"
+            column="25"
+            startOffset="5293"
+            endLine="126"
+            endColumn="51"
+            endOffset="5319"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;LinkedIn: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="169"
+            column="25"
+            startOffset="7068"
+            endLine="169"
+            endColumn="50"
+            endOffset="7093"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;linkedin.com/in/johndoe&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="178"
+            column="25"
+            startOffset="7495"
+            endLine="178"
+            endColumn="63"
+            endOffset="7533"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;GitHub: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="195"
+            column="25"
+            startOffset="8255"
+            endLine="195"
+            endColumn="48"
+            endOffset="8278"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;github.com/johndoe&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="204"
+            column="25"
+            startOffset="8678"
+            endLine="204"
+            endColumn="58"
+            endOffset="8711"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Facebook: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="221"
+            column="25"
+            startOffset="9435"
+            endLine="221"
+            endColumn="50"
+            endOffset="9460"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;facebook.com/johndoe&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="230"
+            column="25"
+            startOffset="9862"
+            endLine="230"
+            endColumn="60"
+            endOffset="9897"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Twitter: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="247"
+            column="25"
+            startOffset="10620"
+            endLine="247"
+            endColumn="49"
+            endOffset="10644"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;twitter.com/johndoe&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="256"
+            column="25"
+            startOffset="11045"
+            endLine="256"
+            endColumn="59"
+            endOffset="11079"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Instagram: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="273"
+            column="25"
+            startOffset="11804"
+            endLine="273"
+            endColumn="51"
+            endOffset="11830"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;instagram.com/johndoe&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="282"
+            column="25"
+            startOffset="12233"
+            endLine="282"
+            endColumn="61"
+            endOffset="12269"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Website: &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="298"
+            column="25"
+            startOffset="12938"
+            endLine="298"
+            endColumn="49"
+            endOffset="12962"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;website.com&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_contact_detail.xml"
+            line="307"
+            column="25"
+            startOffset="13363"
+            endLine="307"
+            endColumn="51"
+            endOffset="13389"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;NFC Status&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="34"
+            column="21"
+            startOffset="1395"
+            endLine="34"
+            endColumn="60"
+            endOffset="1434"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Tap another phone to share your contact&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="53"
+            column="21"
+            startOffset="2244"
+            endLine="53"
+            endColumn="75"
+            endOffset="2298"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;No contacts&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="96"
+            column="17"
+            startOffset="3911"
+            endLine="96"
+            endColumn="57"
+            endOffset="3951"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Setup your profile and share it with friends!&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="113"
+            column="17"
+            startOffset="4619"
+            endLine="113"
+            endColumn="77"
+            endOffset="4679"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;John Doe&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_contact.xml"
+            line="30"
+            column="17"
+            startOffset="1102"
+            endLine="30"
+            endColumn="40"
+            endOffset="1125"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;john.doe@gmail.com&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_contact.xml"
+            line="40"
+            column="17"
+            startOffset="1508"
+            endLine="40"
+            endColumn="50"
+            endOffset="1541"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Contact details&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_contact.xml"
+            line="51"
+            column="13"
+            startOffset="1899"
+            endLine="51"
+            endColumn="57"
+            endOffset="1943"/>
+    </incident>
+
+</incidents>

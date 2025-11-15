@@ -44,12 +44,14 @@ class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageC
     /**
      * Enables NFC foreground dispatch to handle NFC events.
      * Should be called in onResume().
+     * Note: Android Beam was deprecated in API 29 and removed in API 30+.
+     * This method is kept for API compatibility but no longer enables Android Beam.
      */
     fun enableNfcForegroundDispatch() {
         if (nfcAdapter == null) return
         
-        // Enable Android Beam (for older devices)
-        nfcAdapter.setNdefPushMessageCallback(this, activity)
+        // Android Beam is no longer available in modern Android versions (API 30+)
+        // NFC tag reading will still work through standard NFC intent filters
     }
     
     /**
@@ -59,8 +61,7 @@ class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageC
     fun disableNfcForegroundDispatch() {
         if (nfcAdapter == null) return
         
-        // Disable Android Beam
-        nfcAdapter.setNdefPushMessageCallback(null, activity)
+        // Android Beam is no longer available in modern Android versions (API 30+)
     }
     
     override fun createNdefMessage(event: NfcEvent?): NdefMessage {

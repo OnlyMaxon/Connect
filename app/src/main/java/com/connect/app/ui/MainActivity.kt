@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.connect.app.R
@@ -105,14 +106,14 @@ class MainActivity : AppCompatActivity() {
         when {
             !nfcManager.isNfcAvailable() -> {
                 textNfcStatus.text = getString(R.string.nfc_not_available)
-                textNfcStatus.setTextColor(getColor(android.R.color.holo_red_dark))
-                imageNfcIcon.setColorFilter(getColor(android.R.color.holo_red_dark))
+                textNfcStatus.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
+                imageNfcIcon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_red_dark))
                 textNfcSubtitle.text = "This device does not support NFC"
             }
             !nfcManager.isNfcEnabled() -> {
                 textNfcStatus.text = getString(R.string.nfc_disabled)
-                textNfcStatus.setTextColor(getColor(android.R.color.holo_orange_dark))
-                imageNfcIcon.setColorFilter(getColor(android.R.color.holo_orange_dark))
+                textNfcStatus.setTextColor(ContextCompat.getColor(this, android.R.color.holo_orange_dark))
+                imageNfcIcon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_orange_dark))
                 textNfcSubtitle.text = "Tap here to enable NFC in Settings"
                 textNfcStatus.setOnClickListener {
                     startActivity(Intent(Settings.ACTION_NFC_SETTINGS))
@@ -125,13 +126,13 @@ class MainActivity : AppCompatActivity() {
                 val myProfile = contactStorage.getMyProfile()
                 if (myProfile == null) {
                     textNfcStatus.text = getString(R.string.setup_profile_first)
-                    textNfcStatus.setTextColor(getColor(android.R.color.holo_orange_dark))
-                    imageNfcIcon.setColorFilter(getColor(android.R.color.holo_orange_dark))
+                    textNfcStatus.setTextColor(ContextCompat.getColor(this, android.R.color.holo_orange_dark))
+                    imageNfcIcon.setColorFilter(ContextCompat.getColor(this, android.R.color.holo_orange_dark))
                     textNfcSubtitle.text = "Create your profile to start sharing"
                 } else {
                     textNfcStatus.text = "✓ Ready to Share"
-                    textNfcStatus.setTextColor(getColor(R.color.accent))
-                    imageNfcIcon.setColorFilter(getColor(R.color.accent))
+                    textNfcStatus.setTextColor(ContextCompat.getColor(this, R.color.accent))
+                    imageNfcIcon.setColorFilter(ContextCompat.getColor(this, R.color.accent))
                     textNfcSubtitle.text = "Tap another phone to share your contact"
                 }
             }
