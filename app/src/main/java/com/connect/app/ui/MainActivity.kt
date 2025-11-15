@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var contactsAdapter: ContactsAdapter
     
     private lateinit var textNfcStatus: TextView
+    private lateinit var textNfcSubtitle: TextView
+    private lateinit var imageNfcIcon: android.widget.ImageView
     private lateinit var recyclerViewContacts: RecyclerView
-    private lateinit var textEmptyState: TextView
+    private lateinit var layoutEmptyState: android.widget.LinearLayout
     private lateinit var fabEditProfile: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +36,10 @@ class MainActivity : AppCompatActivity() {
         
         // Initialize views
         textNfcStatus = findViewById(R.id.textNfcStatus)
+        textNfcSubtitle = findViewById(R.id.textNfcSubtitle)
+        imageNfcIcon = findViewById(R.id.imageNfcIcon)
         recyclerViewContacts = findViewById(R.id.recyclerViewContacts)
-        textEmptyState = findViewById(R.id.textEmptyState)
+        layoutEmptyState = findViewById(R.id.layoutEmptyState)
         fabEditProfile = findViewById(R.id.fabEditProfile)
         
         // Initialize managers
@@ -71,6 +75,9 @@ class MainActivity : AppCompatActivity() {
         // Reload contacts in case they were updated
         loadContacts()
         
+        // Recheck NFC status (profile might have been created/updated)
+        checkNfcStatus()
+        
         // Enable NFC foreground dispatch
         val myProfile = contactStorage.getMyProfile()
         if (myProfile != null) {
@@ -99,11 +106,18 @@ class MainActivity : AppCompatActivity() {
             !nfcManager.isNfcAvailable() -> {
                 textNfcStatus.text = getString(R.string.nfc_not_available)
                 textNfcStatus.setTextColor(getColor(android.R.color.holo_red_dark))
+                imageNfcIcon.setColorFilter(getColor(android.R.color.holo_red_dark))
+                textNfcSubtitle.text = "This device does not support NFC"
             }
             !nfcManager.isNfcEnabled() -> {
                 textNfcStatus.text = getString(R.string.nfc_disabled)
                 textNfcStatus.setTextColor(getColor(android.R.color.holo_orange_dark))
+                imageNfcIcon.setColorFilter(getColor(android.R.color.holo_orange_dark))
+                textNfcSubtitle.text = "Tap here to enable NFC in Settings"
                 textNfcStatus.setOnClickListener {
+                    startActivity(Intent(Settings.ACTION_NFC_SETTINGS))
+                }
+                textNfcSubtitle.setOnClickListener {
                     startActivity(Intent(Settings.ACTION_NFC_SETTINGS))
                 }
             }
@@ -112,9 +126,13 @@ class MainActivity : AppCompatActivity() {
                 if (myProfile == null) {
                     textNfcStatus.text = getString(R.string.setup_profile_first)
                     textNfcStatus.setTextColor(getColor(android.R.color.holo_orange_dark))
+                    imageNfcIcon.setColorFilter(getColor(android.R.color.holo_orange_dark))
+                    textNfcSubtitle.text = "Create your profile to start sharing"
                 } else {
-                    textNfcStatus.text = getString(R.string.nfc_ready)
-                    textNfcStatus.setTextColor(getColor(R.color.primary))
+                    textNfcStatus.text = "✓ Ready to Share"
+                    textNfcStatus.setTextColor(getColor(R.color.accent))
+                    imageNfcIcon.setColorFilter(getColor(R.color.accent))
+                    textNfcSubtitle.text = "Tap another phone to share your contact"
                 }
             }
         }
@@ -124,40 +142,80 @@ class MainActivity : AppCompatActivity() {
         val contacts = contactStorage.getAllContacts()
         if (contacts.isEmpty()) {
             recyclerViewContacts.visibility = View.GONE
-            textEmptyState.visibility = View.VISIBLE
+            layoutEmptyState.visibility = View.VISIBLE
         } else {
             recyclerViewContacts.visibility = View.VISIBLE
-            textEmptyState.visibility = View.GONE
+            layoutEmptyState.visibility = View.GONE
             contactsAdapter.updateContacts(contacts.sortedByDescending { it.timestamp })
         }
     }
 
     private fun handleIntent(intent: Intent) {
         if (NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action) {
-            val receivedContact = nfcManager.extractContactFromIntent(intent)
-            
-            if (receivedContact != null) {
-                // Generate a unique ID for the received contact
-                val contactWithId = receivedContact.copy(
-                    id = UUID.randomUUID().toString(),
-                    timestamp = System.currentTimeMillis()
-                )
+            try {
+                val receivedContact = nfcManager.extractContactFromIntent(intent)
                 
-                // Save the contact
-                contactStorage.saveContact(contactWithId)
-                
-                // Update UI
-                loadContacts()
-                
-                // Show success message
+                if (receivedContact != null) {
+                    // Validate received contact has minimum required data
+                    if (receivedContact.name.isEmpty() && receivedContact.surname.isEmpty()) {
+                        Toast.makeText(
+                            this,
+                            "Received invalid contact data",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return
+                    }
+                    
+                    // Check for duplicate contacts (same email or name+surname)
+                    val existingContacts = contactStorage.getAllContacts()
+                    val isDuplicate = existingContacts.any { contact ->
+                        (contact.gmail.isNotEmpty() && contact.gmail == receivedContact.gmail) ||
+                        (contact.name == receivedContact.name && contact.surname == receivedContact.surname)
+                    }
+                    
+                    if (isDuplicate) {
+                        Toast.makeText(
+                            this,
+                            "Contact already exists!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return
+                    }
+                    
+                    // Generate a unique ID for the received contact
+                    val contactWithId = receivedContact.copy(
+                        id = UUID.randomUUID().toString(),
+                        timestamp = System.currentTimeMillis()
+                    )
+                    
+                    // Save the contact
+                    contactStorage.saveContact(contactWithId)
+                    
+                    // Update UI
+                    loadContacts()
+                    
+                    // Show success message
+                    Toast.makeText(
+                        this,
+                        getString(R.string.contact_received),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    
+                    // Optionally open the contact detail
+                    openContactDetail(contactWithId)
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Failed to read contact data",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch (e: Exception) {
                 Toast.makeText(
                     this,
-                    getString(R.string.contact_received),
-                    Toast.LENGTH_LONG
+                    "Error processing NFC data",
+                    Toast.LENGTH_SHORT
                 ).show()
-                
-                // Optionally open the contact detail
-                openContactDetail(contactWithId)
             }
         }
     }

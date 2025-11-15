@@ -89,16 +89,26 @@ class ProfileActivity : AppCompatActivity() {
         val surname = editTextSurname.text.toString().trim()
         
         // Validate required fields
-        if (name.isEmpty() || surname.isEmpty()) {
-            Toast.makeText(
-                this,
-                getString(R.string.profile_incomplete),
-                Toast.LENGTH_SHORT
-            ).show()
+        if (name.isEmpty()) {
+            editTextName.error = "Name is required"
+            editTextName.requestFocus()
+            return
+        }
+        
+        if (surname.isEmpty()) {
+            editTextSurname.error = "Surname is required"
+            editTextSurname.requestFocus()
             return
         }
         
         val age = editTextAge.text.toString().toIntOrNull() ?: 0
+        
+        // Validate age if provided
+        if (age < 0 || age > 150) {
+            editTextAge.error = "Please enter a valid age"
+            editTextAge.requestFocus()
+            return
+        }
         
         // Create profile
         val existingProfile = contactStorage.getMyProfile()

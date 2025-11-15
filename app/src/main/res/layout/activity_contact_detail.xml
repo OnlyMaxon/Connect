@@ -313,15 +313,19 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDelete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:padding="14dp"
             android:text="@string/delete_contact"
-            android:backgroundTint="@android:color/holo_red_dark"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundTint="@android:color/holo_red_dark"
+            app:cornerRadius="8dp"
+            app:icon="@android:drawable/ic_menu_delete"
+            app:iconGravity="textStart" />
 
     </LinearLayout>
 </ScrollView>

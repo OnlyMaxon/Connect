@@ -97,11 +97,16 @@ class ContactDetailActivity : AppCompatActivity() {
     private fun displayContact(contact: Contact) {
         // Display name and age
         textDetailName.text = contact.getFullName()
-        textDetailAge.text = if (contact.age > 0) {
+        
+        val ageText = if (contact.age > 0) {
             "Age: ${contact.age}"
         } else {
             "Age: Not specified"
         }
+        
+        // Add saved time info
+        val savedTime = formatTimestamp(contact.timestamp)
+        textDetailAge.text = "$ageText\nSaved: $savedTime"
         
         // Display email
         if (contact.gmail.isNotEmpty()) {
@@ -194,5 +199,18 @@ class ContactDetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+    
+    private fun formatTimestamp(timestamp: Long): String {
+        val now = System.currentTimeMillis()
+        val diff = now - timestamp
+        
+        return when {
+            diff < 60000 -> "Just now"
+            diff < 3600000 -> "${diff / 60000} minutes ago"
+            diff < 86400000 -> "${diff / 3600000} hours ago"
+            diff < 604800000 -> "${diff / 86400000} days ago"
+            else -> java.text.SimpleDateFormat("MMM dd, yyyy", java.util.Locale.getDefault()).format(java.util.Date(timestamp))
+        }
     }
 }
