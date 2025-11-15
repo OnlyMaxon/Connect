@@ -19,7 +19,7 @@ class ContactsAdapter(
 
         fun bind(contact: Contact) {
             textContactName.text = contact.getFullName()
-            textContactEmail.text = contact.gmail.ifEmpty { "No email" }
+            textContactEmail.text = contact.getPrimaryContactInfo()
             
             itemView.setOnClickListener {
                 onContactClick(contact)

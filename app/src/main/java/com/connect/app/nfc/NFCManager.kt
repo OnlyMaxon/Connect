@@ -10,24 +10,41 @@ import com.connect.app.data.Contact
 import com.google.gson.Gson
 import java.nio.charset.Charset
 
+/**
+ * Manages NFC operations for contact sharing.
+ * Handles both sending (Android Beam) and receiving (NDEF discovery) of contact data.
+ */
 class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageCallback {
     
     private val nfcAdapter: NfcAdapter? = NfcAdapter.getDefaultAdapter(activity)
     private val gson = Gson()
     private var contactToShare: Contact? = null
     
+    /**
+     * Checks if NFC hardware is available on the device.
+     */
     fun isNfcAvailable(): Boolean {
         return nfcAdapter != null
     }
     
+    /**
+     * Checks if NFC is enabled in device settings.
+     */
     fun isNfcEnabled(): Boolean {
         return nfcAdapter?.isEnabled == true
     }
     
+    /**
+     * Sets the contact to be shared via NFC.
+     */
     fun setContactToShare(contact: Contact) {
         contactToShare = contact
     }
     
+    /**
+     * Enables NFC foreground dispatch to handle NFC events.
+     * Should be called in onResume().
+     */
     fun enableNfcForegroundDispatch() {
         if (nfcAdapter == null) return
         
@@ -35,6 +52,10 @@ class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageC
         nfcAdapter.setNdefPushMessageCallback(this, activity)
     }
     
+    /**
+     * Disables NFC foreground dispatch.
+     * Should be called in onPause().
+     */
     fun disableNfcForegroundDispatch() {
         if (nfcAdapter == null) return
         
@@ -64,6 +85,10 @@ class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageC
         return NdefMessage(arrayOf(emptyRecord))
     }
     
+    /**
+     * Extracts contact data from an NFC intent.
+     * Returns null if the intent doesn't contain valid contact data.
+     */
     fun extractContactFromIntent(intent: Intent): Contact? {
         if (NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action) {
             val rawMessages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)

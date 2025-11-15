@@ -2,6 +2,10 @@ package com.connect.app.data
 
 import java.io.Serializable
 
+/**
+ * Data class representing a contact with personal and social information.
+ * Used for both user's own profile and received contacts via NFC.
+ */
 data class Contact(
     val id: String = "",
     val name: String = "",
@@ -18,5 +22,29 @@ data class Contact(
     val timestamp: Long = System.currentTimeMillis()
 ) : Serializable {
     
-    fun getFullName(): String = "$name $surname"
+    /**
+     * Returns the full name combining first and last name.
+     */
+    fun getFullName(): String = "$name $surname".trim()
+    
+    /**
+     * Checks if the contact has any social media links.
+     */
+    fun hasSocialLinks(): Boolean = 
+        linkedIn.isNotEmpty() || github.isNotEmpty() || facebook.isNotEmpty() || 
+        twitter.isNotEmpty() || instagram.isNotEmpty() || website.isNotEmpty()
+    
+    /**
+     * Checks if the contact has valid required information.
+     */
+    fun isValid(): Boolean = name.isNotEmpty() && surname.isNotEmpty()
+    
+    /**
+     * Returns a display string for contact info (email or phone if available).
+     */
+    fun getPrimaryContactInfo(): String = when {
+        gmail.isNotEmpty() -> gmail
+        phone.isNotEmpty() -> phone
+        else -> "No contact info"
+    }
 }

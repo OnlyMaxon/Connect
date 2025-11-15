@@ -5,17 +5,28 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+/**
+ * Manages local storage of contacts and user profile using SharedPreferences.
+ * Uses Gson for JSON serialization/deserialization.
+ */
 class ContactStorage(context: Context) {
     
     private val sharedPreferences: SharedPreferences = 
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     private val gson = Gson()
     
+    /**
+     * Saves or updates the user's own profile.
+     */
     fun saveMyProfile(contact: Contact) {
         val json = gson.toJson(contact)
         sharedPreferences.edit().putString(KEY_MY_PROFILE, json).apply()
     }
     
+    /**
+     * Retrieves the user's own profile.
+     * Returns null if no profile exists.
+     */
     fun getMyProfile(): Contact? {
         val json = sharedPreferences.getString(KEY_MY_PROFILE, null) ?: return null
         return try {
@@ -25,6 +36,9 @@ class ContactStorage(context: Context) {
         }
     }
     
+    /**
+     * Saves a received contact. If a contact with the same ID exists, it will be replaced.
+     */
     fun saveContact(contact: Contact) {
         val contacts = getAllContacts().toMutableList()
         // Remove existing contact with same ID if exists
@@ -33,6 +47,10 @@ class ContactStorage(context: Context) {
         saveAllContacts(contacts)
     }
     
+    /**
+     * Retrieves all saved contacts.
+     * Returns an empty list if no contacts are saved.
+     */
     fun getAllContacts(): List<Contact> {
         val json = sharedPreferences.getString(KEY_CONTACTS, null) ?: return emptyList()
         return try {
@@ -43,6 +61,9 @@ class ContactStorage(context: Context) {
         }
     }
     
+    /**
+     * Deletes a contact by its ID.
+     */
     fun deleteContact(contactId: String) {
         val contacts = getAllContacts().toMutableList()
         contacts.removeAll { it.id == contactId }
