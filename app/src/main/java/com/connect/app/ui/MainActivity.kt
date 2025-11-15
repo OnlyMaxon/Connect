@@ -80,11 +80,7 @@ class MainActivity : AppCompatActivity() {
         checkNfcStatus()
         
         // Enable NFC foreground dispatch
-        val myProfile = contactStorage.getMyProfile()
-        if (myProfile != null) {
-            nfcManager.setContactToShare(myProfile)
-            nfcManager.enableNfcForegroundDispatch()
-        }
+        nfcManager.enableNfcForegroundDispatch()
     }
 
     override fun onPause() {

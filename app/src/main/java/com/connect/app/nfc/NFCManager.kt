@@ -3,22 +3,20 @@ package com.connect.app.nfc
 import android.app.Activity
 import android.content.Intent
 import android.nfc.NdefMessage
-import android.nfc.NdefRecord
 import android.nfc.NfcAdapter
-import android.nfc.NfcEvent
 import com.connect.app.data.Contact
 import com.google.gson.Gson
 import java.nio.charset.Charset
 
 /**
  * Manages NFC operations for contact sharing.
- * Handles both sending (Android Beam) and receiving (NDEF discovery) of contact data.
+ * Handles receiving (NDEF discovery) of contact data.
+ * Note: Android Beam (sending) was deprecated in API 29 and removed in API 30+.
  */
-class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageCallback {
+class NFCManager(private val activity: Activity) {
     
     private val nfcAdapter: NfcAdapter? = NfcAdapter.getDefaultAdapter(activity)
     private val gson = Gson()
-    private var contactToShare: Contact? = null
     
     /**
      * Checks if NFC hardware is available on the device.
@@ -32,13 +30,6 @@ class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageC
      */
     fun isNfcEnabled(): Boolean {
         return nfcAdapter?.isEnabled == true
-    }
-    
-    /**
-     * Sets the contact to be shared via NFC.
-     */
-    fun setContactToShare(contact: Contact) {
-        contactToShare = contact
     }
     
     /**
@@ -62,28 +53,6 @@ class NFCManager(private val activity: Activity) : NfcAdapter.CreateNdefMessageC
         if (nfcAdapter == null) return
         
         // Android Beam is no longer available in modern Android versions (API 30+)
-    }
-    
-    override fun createNdefMessage(event: NfcEvent?): NdefMessage {
-        val contact = contactToShare ?: return createEmptyMessage()
-        
-        val json = gson.toJson(contact)
-        val mimeType = "application/vnd.com.connect.app"
-        
-        val mimeRecord = NdefRecord.createMime(mimeType, json.toByteArray(Charset.forName("UTF-8")))
-        val appRecord = NdefRecord.createApplicationRecord(activity.packageName)
-        
-        return NdefMessage(arrayOf(mimeRecord, appRecord))
-    }
-    
-    private fun createEmptyMessage(): NdefMessage {
-        val emptyRecord = NdefRecord(
-            NdefRecord.TNF_EMPTY,
-            ByteArray(0),
-            ByteArray(0),
-            ByteArray(0)
-        )
-        return NdefMessage(arrayOf(emptyRecord))
     }
     
     /**
